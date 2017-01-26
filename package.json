@@ -4,7 +4,7 @@
   "description": "microservice to post to a wordpress instance",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ava",
     "start": "micro"
   },
   "keywords": [
@@ -18,5 +18,11 @@
   "dependencies": {
     "micro": "6.2.0",
     "wordpress": "1.4.0"
+  },
+  "devDependencies": {
+    "ava": "0.17.0",
+    "request": "2.79.0",
+    "request-promise": "4.1.1",
+    "test-listen": "1.0.0"
   }
 }
