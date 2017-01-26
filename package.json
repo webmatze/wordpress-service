@@ -4,7 +4,8 @@
   "description": "microservice to post to a wordpress instance",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "micro"
   },
   "keywords": [
     "micro",
@@ -15,6 +16,7 @@
   "author": "Mathias Karstädt <mathias.karstaedt@gmail.com> (http://mathiaskarstaedt.de/)",
   "license": "MIT",
   "dependencies": {
-    "micro": "6.2.0"
+    "micro": "6.2.0",
+    "wordpress": "1.4.0"
   }
 }
