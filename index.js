@@ -1,6 +1,5 @@
 const wordpress = require('wordpress')
-const { parse } = require('url')
-const { json, send } = require('micro')
+const { json } = require('micro')
 
 let state = {
   wordpress: {
@@ -41,17 +40,16 @@ module.exports = async function (request, response) {
 
     state.post = Object.assign(state.post, data.post)
 
-    client.newPost(state.post, function( error, id ) {
+    client.newPost(state.post, function (error, id) {
       console.log(error)
       console.log(id)
     })
-
   } catch (e) {
     console.log(e)
     let noBodyError = new Error('no Post data provided')
-      noBodyError.statusCode = 400
-      throw noBodyError
+    noBodyError.statusCode = 400
+    throw noBodyError
   }
- 
+
   return { message: 'Hello!' }
 }
