@@ -84,5 +84,5 @@ test('returns success with all required data', async (t) => {
     },
     json: true
   })
-  t.deepEqual(body.message, 'Hello!')
+  t.deepEqual(body.id, '1')
 })

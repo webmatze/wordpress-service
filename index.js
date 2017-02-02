@@ -1,5 +1,5 @@
 const wordpress = require('wordpress')
-const { json } = require('micro')
+const { json, send } = require('micro')
 
 let state = {
   wordpress: {
@@ -21,24 +21,18 @@ module.exports = async function (request, response) {
   try {
     data = await json(request)
   } catch (e) {
-    let noBodyError = new Error('no Post data provided')
-    noBodyError.statusCode = 400
-    throw noBodyError
+    return send(response, 400, { error: 'no post data provided' })
   }
 
   if (!data.auth || !data.auth.username || !data.auth.password) {
-    let noCredentialsError = new Error('no login credentials provided')
-    noCredentialsError.statusCode = 401
-    throw noCredentialsError
+    return send(response, 401, { error: 'no login credentials provided' })
   }
 
   state.wordpress.username = data.auth.username
   state.wordpress.password = data.auth.password
 
   if (!data.auth.url) {
-    let noUrlError = new Error('no url provided')
-    noUrlError.statusCode = 412
-    throw noUrlError
+    return send(response, 412, { error: 'no url provided' })
   }
 
   state.wordpress.url = data.auth.url
@@ -47,9 +41,7 @@ module.exports = async function (request, response) {
 
   state.post = Object.assign(state.post, data.post)
 
-  return client.newPost(state.post, function (error, id) {
-    console.log(error)
-    console.log(id)
-    return { message: 'Hello!' }
+  client.newPost(state.post, function (error, id) {
+    send(response, 200, { error, id })
   })
 }
