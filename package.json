@@ -15,6 +15,10 @@
     "wordpress"
   ],
   "author": "Mathias Karstädt <mathias.karstaedt@gmail.com> (http://mathiaskarstaedt.de/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webmatze/wordpress-service"
+  },
   "license": "MIT",
   "ava": {
     "require": "babel-register",
