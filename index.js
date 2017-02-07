@@ -1,5 +1,6 @@
 const wordpress = require('wordpress')
 const { json, send } = require('micro')
+const cors = require('micro-cors')()
 
 let state = {
   wordpress: {
@@ -15,7 +16,7 @@ let state = {
   }
 }
 
-module.exports = async function (request, response) {
+module.exports = cors(async function (request, response) {
   let data = null
 
   try {
@@ -44,4 +45,4 @@ module.exports = async function (request, response) {
   client.newPost(state.post, function (error, id) {
     send(response, 200, { error, id })
   })
-}
+})

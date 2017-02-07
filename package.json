@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "micro": "6.2.0",
+    "micro-cors": "0.0.1",
     "wordpress": "1.4.0"
   },
   "devDependencies": {
